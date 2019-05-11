@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quiz</title>
+		    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<style type="text/css">
+	.wrapper {
+    text-align: center;
+}
+
+.button {
+	justify-content: center;
+    /*position: absolute;*/
+    /*top: 0%;*/
+}
+</style>
+<script type="text/javascript" >
+   function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+</script>
+
+</head>
+<body class="body" style="background-color:#f6f6f6">
+	<div class="p-3 mb-2 bg-danger text-white">
+	<h1> <center> The Quiz World </center> </h1>
+	<a href="{% url 'quiz:first_view' %}">Home</a> |
+	{%  if user.is_authenticated %}
+		<a href="{% url 'password_change' %}"> Password Change </a>  |				
+		<a href="{% url 'logout' %}"> Log Out </a> 		
+	{% else %}
+		<a href="{% url 'signup' %}">Sign Up </a> |
+		<a href="{% url 'login' %}"> Log In </a> 
+	{% endif %}	
+<div>
+	<strong>Welcome to Quiz World : {% if request.user.is_authenticated %} {{ request.user.username }} {% else  %}Visitor{% endif %}</strong>
+</div>
+	</div>
+</div>
+</body>
+</html>
+
+{%  block content %}
+{% endblock %}

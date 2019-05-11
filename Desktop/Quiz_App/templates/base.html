@@ -1,0 +1,39 @@
+{%  extends 'extend.html' %}
+
+{% block content %}
+
+<body class="body" style="background-color:#f6f6f6">
+  <div class="p-3 mb-2 bg-success text-white">
+<h1>Quiz Questions</h1>
+<p><b> Time remaing : <span id="countdowntimer">60 </span> seconds</b></p>
+</div>
+
+<form action="{% url 'quiz:questions_list'  id=question_no  %}" method="post">
+   {% csrf_token %}
+          <!-- <p> -->
+
+    <ul><b>{{ question.question_seq_number}} {{question.question}}</b></ul>
+    {% for choice in question.choice_set.all %}
+      <!-- <ul><input type="radio" name=question_{{question.id}}  value='{{choice.id}}' required> {{choice.choice}}</ul> -->
+      <ul><input type="radio" name=choice autocomplete="off" required value='{{choice.id}}'> {{choice.choice}}</ul>
+
+    {% endfor %}
+    <input type="hidden" value="{{ question_no }}" name="question_no">
+  <button type="submit" >Submit</button>
+
+</form>
+<script type="text/javascript">
+    var timeleft = 60;
+    var downloadTimer = setInterval(function(){
+    timeleft--;
+    document.getElementById("countdowntimer").textContent = timeleft;
+    if(timeleft == 0) {
+      window.location.href = "{% url 'quiz:timer' %}"
+
+    }
+    },1000);
+ 
+</script>
+
+</body>
+{% endblock %}

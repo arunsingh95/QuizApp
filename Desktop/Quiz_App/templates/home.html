@@ -1,0 +1,16 @@
+{%  extends 'extend.html' %}
+
+{% block content %}
+<body class="body" style="background-color:#f6f6f6">
+  <div class="p-3 mb-2 bg-success text-white">
+<h1>Test Completed</h1>
+  </div>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">CORRECT : {{ request.session.right_answer_count }}</h1>
+    <p class="lead">You have got  {{ request.session.right_answer_count }} correct answer(s) out  of 5 </p>
+  </div>
+</div>
+
+</body>
+{% endblock %}
